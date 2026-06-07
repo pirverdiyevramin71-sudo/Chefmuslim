@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chef Muslim Restaurant — Menu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dark: #8B6914;
+    --cream: #FAF6EE;
+    --cream-dark: #F0E8D6;
+    --brown: #3D2B1F;
+    --brown-light: #6B4C35;
+    --text: #2A1F14;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--brown);
+    font-family: 'EB Garamond', Georgia, serif;
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: var(--cream);
+    text-align: center;
+    padding: 48px 20px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.18) 0%, transparent 70%);
+  }
+  .hero-ornament {
+    font-size: 11px;
+    letter-spacing: 6px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-family: 'Cinzel', serif;
+  }
+  .hero-logo {
+    width: 64px; height: 64px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+    background: white;
+    position: relative; z-index: 1;
+  }
+  .hero-logo svg { width: 36px; height: 36px; }
+  .hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--brown);
+    text-transform: uppercase;
+    position: relative; z-index: 1;
+  }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--gold-dark);
+    letter-spacing: 2px;
+    margin-top: 4px;
+    position: relative; z-index: 1;
+  }
+  .divider {
+    display: flex; align-items: center; gap: 10px;
+    margin: 20px auto;
+    max-width: 300px;
+  }
+  .divider-line { flex: 1; height: 1px; background: var(--gold); opacity: 0.5; }
+  .divider-gem {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* ===== NAV ===== */
+  .nav-wrap {
+    background: var(--brown);
+    position: sticky; top: 0; z-index: 100;
+    padding: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+  }
+  .nav-wrap::-webkit-scrollbar { display: none; }
+  .nav {
+    display: flex; gap: 0;
+    min-width: max-content;
+    padding: 0 12px;
+  }
+  .nav-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 9.5px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(201,168,76,0.55);
+    background: none; border: none;
+    padding: 14px 14px;
+    cursor: pointer;
+    transition: color 0.2s;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    position: relative;
+  }
+  .nav-btn.active, .nav-btn:hover {
+    color: var(--gold-light);
+    border-bottom-color: var(--gold);
+  }
+
+  /* ===== CONTENT ===== */
+  .content { background: var(--cream); }
+
+  /* ===== SECTION ===== */
+  .section { display: none; padding: 0 0 40px; }
+  .section.active { display: block; }
+
+  .section-header {
+    background: linear-gradient(135deg, var(--brown) 0%, #5a3520 100%);
+    text-align: center;
+    padding: 32px 20px 24px;
+    position: relative;
+  }
+  .section-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    color: var(--cream);
+    text-transform: uppercase;
+  }
+  .section-title-gold {
+    color: var(--gold-light);
+  }
+
+  /* ===== ITEMS ===== */
+  .items-list { padding: 16px 0 0; }
+
+  .item {
+    display: flex; align-items: flex-start;
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(61,43,31,0.08);
+    gap: 12px;
+    transition: background 0.15s;
+  }
+  .item:hover { background: rgba(201,168,76,0.05); }
+  .item:last-child { border-bottom: none; }
+
+  .item-body { flex: 1; }
+  .item-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--brown);
+    line-height: 1.3;
+  }
+  .item-desc {
+    font-size: 12.5px;
+    color: var(--brown-light);
+    margin-top: 3px;
+    line-height: 1.5;
+    font-style: italic;
+    opacity: 0.85;
+  }
+  .item-price {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gold-dark);
+    white-space: nowrap;
+    padding-top: 2px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== SUBCATEGORY ===== */
+  .sub-heading {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    padding: 24px 20px 8px;
+    border-bottom: 1px solid rgba(201,168,76,0.25);
+    margin-bottom: 4px;
+  }
+
+  /* ===== SETS ===== */
+  .sets-grid { padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+  .set-card {
+    background: white;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 2px;
+    padding: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .set-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+  }
+  .set-card-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .set-name {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--brown);
+    letter-spacing: 1px;
+  }
+  .set-price {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    color: var(--gold-dark);
+    font-weight: 600;
+    white-space: nowrap;
+    margin-left: 12px;
+  }
+  .set-items { list-style: none; }
+  .set-items li {
+    font-size: 13px;
+    color: var(--brown-light);
+    padding: 2px 0;
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.4;
+  }
+  .set-items li::before {
+    content: '·';
+    position: absolute; left: 4px;
+    color: var(--gold);
+    font-size: 16px;
+    line-height: 1;
+    top: 2px;
+  }
+
+  /* ===== SUSHI SETS ===== */
+  .sushi-sets { padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    background: var(--brown);
+    text-align: center;
+    padding: 28px 20px;
+  }
+  .footer p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: rgba(201,168,76,0.5);
+    letter-spacing: 1px;
+  }
+
+  /* fade in */
+  @keyframes fadeIn { from { opacity:0; transform: translateY(6px); } to { opacity:1; transform: translateY(0); } }
+  .section.active { animation: fadeIn 0.25s ease; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-ornament">— Fine Dining —</div>
+  <div class="hero-logo">
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="4" width="32" height="32" rx="2" stroke="#C9A84C" stroke-width="1.5"/>
+      <path d="M14 10 L14 30 M26 10 L26 30 M14 20 L26 20" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M20 10 L20 14 M20 26 L20 30" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <h1>Chef Muslim</h1>
+  <div class="hero-sub">restaurant</div>
+  <div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+</div>
+
+<div class="nav-wrap">
+  <div class="nav">
+    <button class="nav-btn active" onclick="show('salatlar')">Salatlar</button>
+    <button class="nav-btn" onclick="show('sorbalar')">Şorbalar</button>
+    <button class="nav-btn" onclick="show('isti')">İsti Yemək</button>
+    <button class="nav-btn" onclick="show('steak')">Steak</button>
+    <button class="nav-btn" onclick="show('baliq')">Balıq</button>
+    <button class="nav-btn" onclick="show('noodles')">Noodles</button>
+    <button class="nav-btn" onclick="show('pasta')">Pasta</button>
+    <button class="nav-btn" onclick="show('pizza')">Pizza</button>
+    <button class="nav-btn" onclick="show('fastfood')">Fast Food</button>
+    <button class="nav-btn" onclick="show('rollar')">Rollar</button>
+    <button class="nav-btn" onclick="show('setler')">Setlər</button>
+    <button class="nav-btn" onclick="show('desert')">Desertlər</button>
+    <button class="nav-btn" onclick="show('icecek')">İçəcəklər</button>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- SALATLAR -->
+  <div class="section active" id="salatlar">
+    <div class="section-header"><div class="section-title section-title-gold">Salatlar</div></div>
+    <div class="items-list">
+      <div class="item"><div class="item-body"><div class="item-name">Çoban Salatı</div><div class="item-desc">xiyar, pomidor, bibər, soğan, göyərti, zeytun yağı, limon, narşərab</div></div><div class="item-price">7 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Pomidor Salatı</div><div class="item-desc">pomidor, yaşıllıq, zoğal əzməsi, soğan</div></div><div class="item-price">7 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Göbələk Salatı</div><div class="item-desc">göbələk, pomidor, sweet chili sous, asiana sous</div></div><div class="item-price">8 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Akdeniz Salatı</div><div class="item-desc">mix salat, zeytun, qarğıdalı, zeytun yağı, ağ pendir, çeri pomidor</div></div><div class="item-price">8 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">İzqara Toyuq Salatı</div><div class="item-desc">toyuq filesi, mix salat, asiana sous, limon, çeri pomidor</div></div><div class="item-price">10 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Gavalı Salatı</div><div class="item-desc">toyuq, qara gavalı, xiyar, holland pendiri, yumurta, qoz, mayonez, çeri pomidor</div></div><div class="item-price">10 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Xırçıltılı Badımcan Salatı</div><div class="item-desc">badımcan, pomidor, sweet chili sous, asiana sous, küncüt</div></div><div class="item-price">10 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Crispy Chicken Salat</div><div class="item-desc">chicken nuggets, mix salat, limon, asiana sous</div></div><div class="item-price">11 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Sezar Toyuq</div><div class="item-desc">toyuq, aysberq, suxarı, bildirçin yumurtası, parmezan, çeri pomidor, sezar sousu</div></div><div class="item-price">12 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Sezar Krevetka</div><div class="item-desc">krevetka, aysberq, suxarı, bildirçin yumurtası, parmezan, çeri pomidor, sezar sousu</div></div><div class="item-price">14 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Sezar Salmon</div><div class="item-desc">salmon balığı, aysberq, suxarı, bildirçin yumurtası, parmezan, çeri pomidor, sezar sousu</div></div><div class="item-price">15 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Tuna Salatı</div><div class="item-desc">ton balığı, mix salat, qarğıdalı, zeytun, bildirçin yumurtası, limon, qırmızı soğan, asiana sous</div></div><div class="item-price">15 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Special Salat</div><div class="item-desc">can əti, mix salat, limon, asiana sous, bildirçin yumurtası, yaşıllıq</div></div><div class="item-price">16 ₼</div></div>
+    </div>
+  </div>
+
+  <!-- ŞORBALAR -->
+  <div class="section" id="sorbalar">
+    <div class="section-header"><div class="section-title section-title-gold">Şorbalar</div></div>
+    <div class="items-list">
+      <div class="item"><div class="item-body"><div class="item-name">Mərci Şorbası</div><div class="item-desc">mərci, limon, soğan, kök, bolqar bibəri, kartof, tomat, suxarı</div></div><div class="item-price">4 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Göbələk Şorbası</div><div class="item-desc">göbələk, kartof, kök, süd, qaymaq, suxarı</div></div><div class="item-price">6 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Toyuq Şorbası</div><div class="item-desc">toyuq, kartof, bibər, kök</div></div><div class="item-price">6 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Boranı Şorbası</div><div class="item-desc">boranı, kök, sarımsaq, qaymaq, soğan, suxarı</div></div><div class="item-price">6 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Tomat Şorbası</div><div class="item-desc">pomidor, kök, soğan, parmezan, qaymaq, suxarı</div></div><div class="item-price">6 ₼</div></div>
+    </div>
+  </div>
+
+  <!-- İSTİ YEMƏKLƏRi -->
+  <div class="section" id="isti">
+    <div class="section-header"><div class="section-title section-title-gold">İsti Yeməklər</div></div>
+    <div class="items-list">
+      <div class="item"><div class="item-body"><div class="item-name">Mexico Toyuq</div><div class="item-desc">toyuq filesi, acı sous, bibər, mix salat, mix sous, kartof fri</div></div><div class="item-price">10 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Toyuq Çökərtmə</div><div class="item-desc">toyuq filesi, kartof kibrit, qatıq, tomat sousu, közlənmiş pomidor, közlənmiş bibər</div></div><div class="item-price">11 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Toyuq Pirzola</div><div class="item-desc">toyuq bud dibi, düyü, mix salat, közlənmiş bibər, pomidor</div></div><div class="item-price">11 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Vişnə Souslu Qanad</div><div class="item-desc">toyuq qanadı, düyü, qaymaq, soğan, vişnə, küncüt</div></div><div class="item-price">11 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">BBQ Souslu Toyuq</div><div class="item-desc">toyuq filesi, bibər, qaymaq, BBQ sous, düyü, mix salat</div></div><div class="item-price">11 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Körili Toyuq</div><div class="item-desc">toyuq filesi, mix salat, göbələk, qaymaq, süd, köri ədviyyatı, kartof fri, mix sous</div></div><div class="item-price">12 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Vişnə Souslu Qaymaqlı File</div><div class="item-desc">toyuq filesi, düyü, qaymaq, soğan</div></div><div class="item-price">12 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Toyuq Çöp Şiş</div><div class="item-desc">toyuq, közlənmiş pomidor, közlənmiş bibər, düyü, mix salat</div></div><div class="item-price">12 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Toyuq Langet</div><div class="item-desc">mix salat, düyü, közlənmiş pomidor, közlənmiş bibər, asiana sous</div></div><div class="item-price">12 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Qaymaqlı Toyuq</div><div class="item-desc">toyuq, qaymaq, süd, göbələk, soğan, mix salat, düyü</div></div><div class="item-price">12 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Mexico Pirzola</div><div class="item-desc">toyuq bud dibi, acılı sous, düyü, mix salat</div></div><div class="item-price">12 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Krevetka Çöp Şiş</div><div class="item-desc">krevetka, közlənmiş pomidor, közlənmiş bibər, düyü, mix salat, asiana sous</div></div><div class="item-price">13 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Soslu Pirzola</div><div class="item-desc">toyuq bud dibi, acılı sous, asiana sous, mix salat, düyü, bibər, pomidor</div></div><div class="item-price">13 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Ət Çökərtmə</div><div class="item-desc">bel əti, kartof, qatıq, tomat sousu, közlənmiş pomidor, közlənmiş bibər</div></div><div class="item-price">16 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Nar Qovurma (Ət)</div><div class="item-desc">bel əti, şəbalid, zoğal sousu, nar</div></div><div class="item-price">16 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Ət Langet</div><div class="item-desc">can əti, mix salat, közlənmiş pomidor, közlənmiş bibər, düyü, asiana sous</div></div><div class="item-price">16 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Qaymaqlı Can Əti</div><div class="item-desc">can əti, soğan, göbələk, qaymaq, düyü, mix salat</div></div><div class="item-price">17 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">İsveç Köftəsi</div><div class="item-desc">dana qiymə, qaymaq sousu, kartof fri, mix salat</div></div><div class="item-price">18 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Nar Qovurma (Farel)</div><div class="item-desc">farel, soğan, nar, zoğal əzməsi, narşərab, limon, mix salat, ev sayağı kartof</div></div><div class="item-price">18 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Saray Qovurma</div><div class="item-desc">bel əti, bibər, göbələk, soğan, pomidor, düyü</div></div><div class="item-price">19 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Tərəvəzli Antrikot</div><div class="item-desc">antrikot, kök, badımcan, bibər, kabak, yaşıllıq, ev sayağı kartof</div></div><div class="item-price">25 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Vişnə Souslu Antrikot</div><div class="item-desc">antrikot, soğan, vişnə, zoğal əzməsi, közlənmiş pomidor, közlənmiş bibər, ev sayağı kartof</div></div><div class="item-price">26 ₼</div></div>
+    </div>
+  </div>
+
+  <!-- STEAK -->
+  <div class="section" id="steak">
+    <div class="section-header"><div class="section-title section-title-gold">Steak</div></div>
+    <div class="items-list">
+      <div class="item"><div class="item-body"><div class="item-name">Farel Steak</div><div class="item-desc">farel, düyü, zoğal əzməsi, narşərab, limon, asiana sous</div></div><div class="item-price">20 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Beef Steak</div><div class="item-desc">can əti, ev sayağı kartof, göbələk sousu, pomidor, közlənmiş bibər, kabak, badımcan, kök, asiana sous</div></div><div class="item-price">33 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Ribeye Steak</div><div class="item-desc">bel əti, ev sayağı kartof, göbələk sousu, pomidor, közlənmiş bibər, kabak, badımcan, kök, asiana sous</div></div><div class="item-price">35 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Salmon Steak</div><div class="item-desc">salmon, düyü, narşərab, zoğal əzməsi, limon, mix salat, asiana sous</div></div><div class="item-price">37 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">T-Bone Steak</div><div class="item-desc">bel əti, ev sayağı kartof, göbələk sousu, pomidor, közlənmiş bibər, kabak, badımcan, kök</div></div><div class="item-price">38 ₼</div></div>
+    </div>
+  </div>
+
+  <!-- BALIQ -->
+  <div class="section" id="baliq">
+    <div class="section-header"><div class="section-title section-title-gold">Balıq Yeməkləri</div></div>
+    <div class="items-list">
+      <div class="item"><div class="item-body"><div class="item-name">Skumbriya</div><div class="item-desc">skumbriya, mix salat, düyü, narşərab, zoğal əzməsi</div></div><div class="item-price">13 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Farel</div><div class="item-desc">farel, mix salat, düyü, narşərab, zoğal əzməsi</div></div><div class="item-price">14 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Dorado</div><div class="item-desc">dorado, mix salat, düyü, narşərab, zoğal əzməsi, limon</div></div><div class="item-price">18 ₼</div></div>
+    </div>
+  </div>
+
+  <!-- NOODLES -->
+  <div class="section" id="noodles">
+    <div class="section-header"><div class="section-title section-title-gold">Noodles</div></div>
+    <div class="items-list">
+      <div class="item"><div class="item-body"><div class="item-name">Tərəvəzli Noodle</div><div class="item-desc">əriştə, bibər, kabak, soğan, kök, asiana sous, acılı sous, soya sousu, zəncəfilli yağ, küncüt, yaşıl soğan</div></div><div class="item-price">8 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Toyuqlu Noodle</div><div class="item-desc">toyuq, əriştə, bolqar bibəri, soğan, kök, kabak, soya sousu, acılı sous, zəncəfilli yağ, asiana sous, yaşıl soğan, küncüt</div></div><div class="item-price">11 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Beef Noodle</div><div class="item-desc">can əti, əriştə, bolqar bibəri, soğan, kök, asiana sous, acılı sous, soya sousu, zəncəfilli yağ, küncüt, yaşıl soğan</div></div><div class="item-price">13 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Krevetkalı Noodle</div><div class="item-desc">krevetka, əriştə, bolqar bibəri, soğan, kök, acılı sous, zəncəfilli yağ, asiana sous, soya sousu, yaşıl soğan, küncüt</div></div><div class="item-price">14 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Fish Noodle</div><div class="item-desc">farel, əriştə, bolqar bibəri, soğan, kök, acılı sous, soya sousu, asiana sous</div></div><div class="item-price">15 ₼</div></div>
+    </div>
+  </div>
+
+  <!-- PASTA -->
+  <div class="section" id="pasta">
+    <div class="section-header"><div class="section-title section-title-gold">Pasta</div></div>
+    <div class="items-list">
+      <div class="item"><div class="item-body"><div class="item-name">Spaghetti Nefertiti</div><div class="item-desc">spaghetti, parmezan pendiri, ağ pendir, qaymaq</div></div><div class="item-price">8 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Penne Arrabbiata</div><div class="item-desc">penne makaronu, acı arrabbiata sousu, pomidor sousu, zeytun yağı, sarımsaq</div></div><div class="item-price">8 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Fettuccine Alfredo</div><div class="item-desc">toyuq, göbələk, fettuccine makaronu, qaymaq, parmezan pendiri</div></div><div class="item-price">10 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Köri Souslu Penne Alfredo</div><div class="item-desc">toyuq, göbələk, parmezan pendiri, qaymaq, süd, penne makaronu, köri sousu</div></div><div class="item-price">10 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Spaghetti Carbonara</div><div class="item-desc">göbələk, kolbasa, qaymaq, parmezan pendiri, süd, spaghetti</div></div><div class="item-price">10 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Fettuccine Krevetka</div><div class="item-desc">toyuq, krevetka, fettuccine makaronu, göbələk, qaymaq, süd, parmezan pendiri</div></div><div class="item-price">12 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Dörd Pendirli Penne</div><div class="item-desc">penne makaronu, çeddar pendiri, holland pendiri, parmezan pendiri, qaymaq, krem pendir</div></div><div class="item-price">12 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Golden Chicken Fettuccine</div><div class="item-desc">pankolanmış toyuq filesi, fettuccine, süd, qaymaq, pendir sousu, parmezan pendiri</div></div><div class="item-price">13 ₼</div></div>
+    </div>
+  </div>
+
+  <!-- PIZZA -->
+  <div class="section" id="pizza">
+    <div class="section-header"><div class="section-title section-title-gold">Pizza</div></div>
+    <div class="items-list">
+      <div class="item"><div class="item-body"><div class="item-name">Margarita</div><div class="item-desc">özəl pizza sousu, mozzarella, oregano</div></div><div class="item-price">10 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Tərəvəzli Pizza</div><div class="item-desc">özəl pizza sousu, mozzarella, bibər, pomidor, zeytun, qarğıdalı, göbələk</div></div><div class="item-price">12 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Fungi Polo</div><div class="item-desc">toyuq, özəl pizza sousu, mozzarella, göbələk</div></div><div class="item-price">13 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Sosisli Pizza</div><div class="item-desc">sosis, özəl pizza sousu, mozzarella</div></div><div class="item-price">14 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Peperoni</div><div class="item-desc">kolbasa, özəl pizza sousu, mozzarella</div></div><div class="item-price">15 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Polo Pizza</div><div class="item-desc">toyuq, özəl pizza sousu, mozzarella, qarğıdalı, pomidor, bibər</div></div><div class="item-price">15 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Mexico Pizza</div><div class="item-desc">sosis, özəl, jalapeno bibəri, pizza sousu, mozzarella, toyuq, sosis</div></div><div class="item-price">15 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Barbecue Pizza</div><div class="item-desc">özəl pizza sousu, mozzarella, xiyar turşusu, qırmızı soğan, qarğıdalı, toyuq, BBQ sousu</div></div><div class="item-price">16 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Mix Pizza</div><div class="item-desc">toyuq, sosis, özəl pizza sousu, mozzarella, qarğıdalı, pomidor, göbələk, zeytun</div></div><div class="item-price">17 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Ton Balıqlı Pizza</div><div class="item-desc">ton balığı, özəl pizza sousu, mozzarella, qırmızı soğan, qarğıdalı</div></div><div class="item-price">17 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Sezar Pizza</div><div class="item-desc">özəl pizza sousu, mozzarella, toyuq, aysberq, sezar sousu, parmezan, çeri pomidor</div></div><div class="item-price">18 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Qapalı Pizza</div><div class="item-desc">ət (beef), toyuq, özəl pizza sousu, mozzarella, pomidor, bibər, qarğıdalı, göbələk</div></div><div class="item-price">20 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Chef Muslim Pizza</div><div class="item-desc">ton balığı, toyuq, özəl pizza sousu, mozzarella, BBQ sousu, parmezan</div></div><div class="item-price">22 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Dörd Pendirli Pizza</div><div class="item-desc">özəl pizza sousu, holland pendiri, mozzarella, parmezan, cheddar</div></div><div class="item-price">22 ₼</div></div>
+    </div>
+  </div>
+
+  <!-- FAST FOOD -->
+  <div class="section" id="fastfood">
+    <div class="section-header"><div class="section-title section-title-gold">Fast Food</div></div>
+    <div class="items-list">
+      <div class="sub-heading">Snacks</div>
+      <div class="item"><div class="item-body"><div class="item-name">Nuggets Fri</div><div class="item-desc">pankolanmış toyuq filesi, kartof fri, mix sous, sweet chili sous</div></div><div class="item-price">11 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Pendir Çubuqları</div><div class="item-desc">pendir, kartof fri, mix sous, sweet chili sous</div></div><div class="item-price">10 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">BBQ Qanad</div><div class="item-desc">qanad, sweet chili sous, BBQ sous, mix salat, kartof fri, küncüt</div></div><div class="item-price">9 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Fırında Pendirli Göbələk</div><div class="item-desc">göbələk, pendir</div></div><div class="item-price">10 ₼</div></div>
+      <div class="sub-heading">Burgerlər</div>
+      <div class="item"><div class="item-body"><div class="item-name">Islak Burger</div><div class="item-desc">dana qiymə, mini burger çörəyi, tomat sousu, kartof fri</div></div><div class="item-price">9 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Crispy Burger</div><div class="item-desc">pankolanmış toyuq filesi, pomidor, xiyar turşusu, kahı, mix sous, kartof fri, cheddar</div></div><div class="item-price">11 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Mexico Chicken Burger</div><div class="item-desc">pankolanmış toyuq filesi, pomidor, xiyar turşusu, kahı, mix sous, acılı sous, kartof fri, pendir, jalapeno bibəri</div></div><div class="item-price">12 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Classic Ət Burger</div><div class="item-desc">mix sous, dana qiymə, kahı, pomidor, xiyar turşusu, kartof fri, sous</div></div><div class="item-price">14 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Big Chicken Burger</div><div class="item-desc">kahı, pomidor, xiyar turşusu, özəl sous, pankolanmış toyuq filesi, pendir, kartof fri, sous</div></div><div class="item-price">15 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Cheese Burger</div><div class="item-desc">dana qiymə, mix sous, kahı, pomidor, xiyar turşusu, cheddar, kartof fri, sous</div></div><div class="item-price">15 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Göbələk Souslu Burger</div><div class="item-desc">dana qiymə, kahı, pomidor, xiyar turşusu, pendir, göbələk sousu, kartof fri, sous</div></div><div class="item-price">15 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Chef Muslim Burger</div><div class="item-desc">dana qiymə, pomidor, xiyar turşusu, kahı, soğan, BBQ sousu, cheddar, sous, kartof fri, kibrit kartof</div></div><div class="item-price">15 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Lokum Burger</div><div class="item-desc">qızardılmış can əti, kahı, xiyar turşusu, pomidor, sous, kartof fri, pendir, kibrit kartof</div></div><div class="item-price">16 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Big Cheese Burger</div><div class="item-desc">xiyar turşusu, pomidor, kahı, dana qiymə, mix sous, cheddar</div></div><div class="item-price">18 ₼</div></div>
+      <div class="sub-heading">Çiy Köftə</div>
+      <div class="item"><div class="item-body"><div class="item-name">Çiy Köftə (250 qr)</div><div class="item-desc">çiy köftə, kahı, pomidor, turşu xiyar, lavaş</div></div><div class="item-price">12 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Çiy Köftə (500 qr)</div><div class="item-desc">çiy köftə, kahı, pomidor, turşu xiyar, lavaş</div></div><div class="item-price">20 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Çiy Köftə Dürüm</div><div class="item-desc">çiy köftə, pomidor, lavaş</div></div><div class="item-price">3 ₼</div></div>
+    </div>
+  </div>
+
+  <!-- ROLLAR -->
+  <div class="section" id="rollar">
+    <div class="section-header"><div class="section-title section-title-gold">Sushi & Rollar</div></div>
+    <div class="items-list">
+      <div class="sub-heading">İsti Rollar</div>
+      <div class="item"><div class="item-body"><div class="item-name">Hot Kani</div><div class="item-desc">krab, düyü, nori, pendir</div></div><div class="item-price">10 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Hot Chicken</div><div class="item-desc">toyuq, düyü, nori, pendir</div></div><div class="item-price">10 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Singapore</div><div class="item-desc">toyuq, düyü, nori, pendir</div></div><div class="item-price">12 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Hot Ebi</div><div class="item-desc">krevetka, düyü, nori, pendir</div></div><div class="item-price">12 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Hokkaido</div><div class="item-desc">qızıl balıq, düyü, nori, pendir</div></div><div class="item-price">13 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Toyama</div><div class="item-desc">krevetka, düyü, nori, pendir, omlet, kürü</div></div><div class="item-price">13 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Hot Maguro</div><div class="item-desc">ton balığı, düyü, nori, pendir</div></div><div class="item-price">13 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Hammanishi</div><div class="item-desc">unagi balıq, krevetka, düyü, nori, pendir, avokado</div></div><div class="item-price">17 ₼</div></div>
+
+      <div class="sub-heading">Soyuq Rollar</div>
+      <div class="item"><div class="item-body"><div class="item-name">California Kani</div><div class="item-desc">krab, düyü, nori, pendir, xiyar, kürü</div></div><div class="item-price">12 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">California Shrimp</div><div class="item-desc">krevetka, düyü, nori, pendir, xiyar, kürü</div></div><div class="item-price">14 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Philadelphia</div><div class="item-desc">qızıl balıq, düyü, nori, pendir, xiyar</div></div><div class="item-price">13 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Philadelphia Shrimp</div><div class="item-desc">qızıl balıq, krevetka, düyü, nori, pendir, xiyar</div></div><div class="item-price">15 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Philadelphia Kani</div><div class="item-desc">qızıl balıq, krab, düyü, nori, pendir, xiyar</div></div><div class="item-price">13 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Philadelphia Smoke</div><div class="item-desc">hisə verilmiş qızıl balıq, düyü, nori, pendir, xiyar</div></div><div class="item-price">17 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Philadelphia Chic</div><div class="item-desc">qızıl balıq, avokado, düyü, nori, pendir</div></div><div class="item-price">15 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Alaska</div><div class="item-desc">krab, düyü, nori, pendir, xiyar, küncüt</div></div><div class="item-price">10 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Alaska Tuna</div><div class="item-desc">ton balığı, düyü, nori, pendir, xiyar, küncüt</div></div><div class="item-price">12 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Unagi Onigiri</div><div class="item-desc">unagi balıq, düyü, nori, pendir, xiyar</div></div><div class="item-price">19 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Canada</div><div class="item-desc">unagi balıq, düyü, nori, krevetka, pendir, xiyar</div></div><div class="item-price">19 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Green Dragon</div><div class="item-desc">krab, düyü, nori, pendir, avokado</div></div><div class="item-price">14 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Ebi Crunch</div><div class="item-desc">krevetka, düyü, nori, pendir, xiyar, küncüt, kürü</div></div><div class="item-price">13 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Fly Roll</div><div class="item-desc">ton balığı, düyü, nori, pendir, mayonez, kürü, parmezan</div></div><div class="item-price">13 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Cheese Roll</div><div class="item-desc">toyuq, düyü, nori, pendir, xiyar, cheddar pendiri</div></div><div class="item-price">12 ₼</div></div>
+
+      <div class="sub-heading">Maki</div>
+      <div class="item"><div class="item-body"><div class="item-name">Sake Maki</div><div class="item-desc">düyü, nori, qızıl balığı</div></div><div class="item-price">10 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Kappa Maki</div><div class="item-desc">düyü, nori, xiyar, küncüt</div></div><div class="item-price">7 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Avocado Maki</div><div class="item-desc">düyü, nori, avokado, küncüt</div></div><div class="item-price">9.5 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Kani Maki</div><div class="item-desc">krab, düyü, nori, pendir</div></div><div class="item-price">9 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Kani Ebi</div><div class="item-desc">krab, düyü, nori, krevetka</div></div><div class="item-price">11 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Ebi Maki</div><div class="item-desc">krevetka, düyü, nori, pendir</div></div><div class="item-price">11 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Planeta Maki</div><div class="item-desc">qızıl balıq, düyü, nori, kahı, pendir, xiyar</div></div><div class="item-price">12 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Sensei Maki</div><div class="item-desc">krevetka, düyü, nori, kahı, xiyar, pendir</div></div><div class="item-price">12 ₼</div></div>
+    </div>
+  </div>
+
+  <!-- SETLƏR -->
+  <div class="section" id="setler">
+    <div class="section-header"><div class="section-title section-title-gold">Setlər</div></div>
+
+    <div class="sub-heading" style="margin-top:8px;">Suşi Setləri</div>
+    <div class="sushi-sets">
+      <div class="set-card">
+        <div class="set-card-header"><div class="set-name">Epic Set <span style="font-weight:400;font-size:12px;color:#888">(114 ədəd)</span></div><div class="set-price">80 ₼</div></div>
+        <ul class="set-items">
+          <li>Philadelphia ×8</li><li>California Kani ×8</li><li>Alaska ×8</li><li>Cheese Roll ×8</li><li>Unagi Onigiri ×8</li><li>Kani Maki ×8</li><li>Fly Roll ×8</li><li>Nuggets Maki ×8</li><li>Maguro Hot ×10</li><li>Hokkaido ×10</li><li>Hot Kani ×10</li><li>Hot Chicken ×10</li><li>Singapore ×10</li>
+        </ul>
+      </div>
+      <div class="set-card">
+        <div class="set-card-header"><div class="set-name">Diamond Set <span style="font-weight:400;font-size:12px;color:#888">(58 ədəd)</span></div><div class="set-price">69 ₼</div></div>
+        <ul class="set-items">
+          <li>Philadelphia ×8</li><li>California Kani ×8</li><li>Cheese Roll ×8</li><li>Philadelphia Chic ×8</li><li>Unagi Onigiri ×8</li><li>Fly Roll ×8</li><li>Hokkaido ×10</li>
+        </ul>
+      </div>
+      <div class="set-card">
+        <div class="set-card-header"><div class="set-name">Set Philadelphia <span style="font-weight:400;font-size:12px;color:#888">(50 ədəd)</span></div><div class="set-price">58 ₼</div></div>
+        <ul class="set-items">
+          <li>Philadelphia Fresh ×8</li><li>Philadelphia Smoke ×8</li><li>Philadelphia Kani ×8</li><li>Philadelphia Shrimp ×8</li><li>Philadelphia Chic ×8</li><li>Hokkaido ×10</li>
+        </ul>
+      </div>
+      <div class="set-card">
+        <div class="set-card-header"><div class="set-name">Toro Set <span style="font-weight:400;font-size:12px;color:#888">(54 ədəd)</span></div><div class="set-price">45 ₼</div></div>
+        <ul class="set-items">
+          <li>California Kani ×8</li><li>Philadelphia ×8</li><li>Alaska ×8</li><li>Hokkaido ×10</li><li>Hot Kani ×10</li><li>Hot Chicken ×10</li><li>Buzz cola ×3</li>
+        </ul>
+      </div>
+      <div class="set-card">
+        <div class="set-card-header"><div class="set-name">Set Katana <span style="font-weight:400;font-size:12px;color:#888">(56 ədəd)</span></div><div class="set-price">45 ₼</div></div>
+        <ul class="set-items">
+          <li>California Kani ×8</li><li>Philadelphia ×8</li><li>Green Dragon ×8</li><li>Planeta Maki ×8</li><li>Kappa Maki ×8</li><li>Sake Maki ×8</li>
+        </ul>
+      </div>
+      <div class="set-card">
+        <div class="set-card-header"><div class="set-name">Crispy Set <span style="font-weight:400;font-size:12px;color:#888">(60 ədəd)</span></div><div class="set-price">45 ₼</div></div>
+        <ul class="set-items">
+          <li>Hokkaido ×10</li><li>Hot Kani ×10</li><li>Hot Kani ×10</li><li>Hot Chicken ×10</li><li>Singapore ×10</li><li>Hot Maguro ×10</li><li>Buzz cola ×3</li>
+        </ul>
+      </div>
+      <div class="set-card">
+        <div class="set-card-header"><div class="set-name">Maki Set <span style="font-weight:400;font-size:12px;color:#888">(48 ədəd)</span></div><div class="set-price">40 ₼</div></div>
+        <ul class="set-items">
+          <li>Ebi Maki ×8</li><li>Kani Maki ×8</li><li>Planeta Maki ×8</li><li>Sensei Maki ×8</li><li>Sake Maki ×8</li><li>Kappa Maki ×8</li>
+        </ul>
+      </div>
+      <div class="set-card">
+        <div class="set-card-header"><div class="set-name">Tokio Set <span style="font-weight:400;font-size:12px;color:#888">(40 ədəd)</span></div><div class="set-price">32 ₼</div></div>
+        <ul class="set-items">
+          <li>California Kani ×8</li><li>Philadelphia ×8</li><li>Sake Maki ×8</li><li>Kappa Maki ×8</li><li>Kani Maki ×8</li>
+        </ul>
+      </div>
+      <div class="set-card">
+        <div class="set-card-header"><div class="set-name">Tempura Set <span style="font-weight:400;font-size:12px;color:#888">(40 ədəd)</span></div><div class="set-price">35 ₼</div></div>
+        <ul class="set-items">
+          <li>Hokkaido ×10</li><li>Hot Kani ×10</li><li>Hot Chicken ×10</li><li>Hot Ebi ×10</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-heading">Yemək Setləri</div>
+    <div class="sets-grid">
+      <div class="set-card">
+        <div class="set-card-header"><div class="set-name">Platin Set</div><div class="set-price">42 ₼</div></div>
+        <ul class="set-items"><li>Sosisli pizza</li><li>Fungi Polo pizza</li><li>Hot Chicken</li><li>Hot Kani</li><li>Nuggets – 2 pors</li><li>Kartof fri – 2 pors</li><li>Çiy köftə dürüm ×2</li></ul>
+      </div>
+      <div class="set-card">
+        <div class="set-card-header"><div class="set-name">Grand Set</div><div class="set-price">52 ₼</div></div>
+        <ul class="set-items"><li>Pepperoni pizza</li><li>Fungi Polo pizza</li><li>Hot Chicken</li><li>Hot Kani</li><li>Singapore</li><li>Nuggetts – 2 pors</li><li>Kartof Fri – 4 pors</li></ul>
+      </div>
+      <div class="set-card">
+        <div class="set-card-header"><div class="set-name">Double Set</div><div class="set-price">32 ₼</div></div>
+        <ul class="set-items"><li>Chicken Burger ×2</li><li>Sosisli pizza</li><li>Nuggets – 1 pors</li><li>Kartof fri – 2 pors</li></ul>
+      </div>
+      <div class="set-card">
+        <div class="set-card-header"><div class="set-name">Kvartet Set</div><div class="set-price">52 ₼</div></div>
+        <ul class="set-items"><li>Chicken Burger ×4</li><li>Fungi Polo pizza</li><li>Nuggets – 2 pors</li><li>Kartof fri – 2 pors</li></ul>
+      </div>
+      <div class="set-card">
+        <div class="set-card-header"><div class="set-name">Trio Set</div><div class="set-price">33 ₼</div></div>
+        <ul class="set-items"><li>Mix pizza</li><li>Hot Chicken</li><li>California</li><li>Kartof fri – 2 pors</li><li>Buzz Cola ×3</li></ul>
+      </div>
+      <div class="set-card">
+        <div class="set-card-header"><div class="set-name">Ailə Seti</div><div class="set-price">40 ₼</div></div>
+        <ul class="set-items"><li>Sosisli pizza</li><li>Fungi Polo pizza</li><li>Hot Kani</li><li>Hot Chicken</li><li>Kartof fri – 2 pors</li></ul>
+      </div>
+      <div class="set-card">
+        <div class="set-card-header"><div class="set-name">Pro Set</div><div class="set-price">35 ₼</div></div>
+        <ul class="set-items"><li>Margarita pizza</li><li>Tərəvəzli pizza</li><li>Hot Chicken</li><li>Alaska Tuna</li><li>Kartof fri – 2 pors</li><li>Çiy köftə dürüm ×2</li></ul>
+      </div>
+      <div class="set-card">
+        <div class="set-card-header"><div class="set-name">Set Mexico</div><div class="set-price">42 ₼</div></div>
+        <ul class="set-items"><li>Beef nachos</li><li>Chicken nachos</li><li>Mexico pizza</li><li>Ev sayağı kartof – 2 pors</li><li>Buzz Cola ×4</li></ul>
+      </div>
+      <div class="set-card">
+        <div class="set-card-header"><div class="set-name">Mega Set</div><div class="set-price">58 ₼</div></div>
+        <ul class="set-items"><li>BBQ pizza</li><li>Polo pizza</li><li>California</li><li>Philadelphia</li><li>Hokkaido</li><li>Nuggets – 2 pors</li><li>Kartof fri – 2 pors</li><li>Buzz Cola ×4</li></ul>
+      </div>
+      <div class="set-card">
+        <div class="set-card-header"><div class="set-name">Deluxe Set</div><div class="set-price">75 ₼</div></div>
+        <ul class="set-items"><li>Sezar pizza</li><li>Sosisli pizza</li><li>Polo pizza</li><li>California</li><li>Philadelphia</li><li>Hokkaido</li><li>Hot kani</li><li>Nuggets – 3 pors</li><li>Kartof fri – 3 pors</li><li>Çiy köftə dürüm ×3</li><li>Meyvə şirəsi – 1L</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESERTLƏR -->
+  <div class="section" id="desert">
+    <div class="section-header"><div class="section-title section-title-gold">Desertlər</div></div>
+    <div class="items-list">
+      <div class="item"><div class="item-body"><div class="item-name">Sütlaç</div></div><div class="item-price">5 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Spoonful</div></div><div class="item-price">5 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Künəfə</div></div><div class="item-price">6 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Ballı Tort</div></div><div class="item-price">7 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Napaleon Tort</div></div><div class="item-price">7 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Dubai Cheesecake</div></div><div class="item-price">7 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Cheesecake (Çiyələk)</div></div><div class="item-price">7 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Cheesecake (Karamel)</div></div><div class="item-price">7 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Cheesecake (Qarağat)</div></div><div class="item-price">7 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">San Sebastian</div></div><div class="item-price">8 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Tiramisu</div></div><div class="item-price">8 ₼</div></div>
+    </div>
+  </div>
+
+  <!-- İÇƏCƏKLƏR -->
+  <div class="section" id="icecek">
+    <div class="section-header"><div class="section-title section-title-gold">İçəcəklər</div></div>
+    <div class="items-list">
+      <div class="sub-heading">Çay</div>
+      <div class="item"><div class="item-body"><div class="item-name">Earl Grey</div></div><div class="item-price">5 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Yaşıl Çay</div></div><div class="item-price">5 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Jasmin Çay</div></div><div class="item-price">5 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Mərakeş Çayı</div><div class="item-desc">zəncəfil, darçın, bal, limon</div></div><div class="item-price">7 ₼</div></div>
+
+      <div class="sub-heading">Mürəbbələr</div>
+      <div class="item"><div class="item-body"><div class="item-name">Kakos Mürəbbəsi</div></div><div class="item-price">5 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Çiyələk Mürəbbəsi</div></div><div class="item-price">5 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Ağ Gilas Mürəbbəsi</div></div><div class="item-price">5 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Ərik Mürəbbəsi</div></div><div class="item-price">5 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Plombir Mürəbbəsi</div></div><div class="item-price">5 ₼</div></div>
+
+      <div class="sub-heading">Kofe</div>
+      <div class="item"><div class="item-body"><div class="item-name">Espresso Single</div></div><div class="item-price">3 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Espresso Double</div></div><div class="item-price">4 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Americano (small)</div></div><div class="item-price">3 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Americano (medium)</div></div><div class="item-price">4 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Cappuccino (small)</div></div><div class="item-price">4 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Cappuccino (medium)</div></div><div class="item-price">5 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Latte (small)</div></div><div class="item-price">4 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Latte (medium)</div></div><div class="item-price">5 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Raf Coffee (small)</div><div class="item-desc">lavanda / citrus / vanilla / caramel / salted caramel · kofe, qaymaq, süd, sirop</div></div><div class="item-price">5 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Raf Coffee (medium)</div></div><div class="item-price">7 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Mocha (small)</div><div class="item-desc">kofe, süd, şokolad tozu</div></div><div class="item-price">5 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Mocha (medium)</div></div><div class="item-price">6 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Spanish Latte (small)</div><div class="item-desc">kofe, süd, qatlaşdırılmış süd</div></div><div class="item-price">5 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Spanish Latte (medium)</div></div><div class="item-price">6 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Affogato</div><div class="item-desc">kofe, dondurma</div></div><div class="item-price">6 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Coffee Glace</div><div class="item-desc">kofe, dondurma</div></div><div class="item-price">5 ₼</div></div>
+
+      <div class="sub-heading">Smoothie</div>
+      <div class="item"><div class="item-body"><div class="item-name">Forest Berry</div><div class="item-desc">dondurma, sirop, süd, təbii meyvə</div></div><div class="item-price">7 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Strawberry</div><div class="item-desc">dondurma, sirop, süd, təbii meyvə</div></div><div class="item-price">7 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Banana</div><div class="item-desc">dondurma, sirop, süd, banan</div></div><div class="item-price">7 ₼</div></div>
+
+      <div class="sub-heading">Milkshake</div>
+      <div class="item"><div class="item-body"><div class="item-name">Vanilla Milkshake</div><div class="item-desc">dondurma, sirop, süd</div></div><div class="item-price">7 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Strawberry Milkshake</div><div class="item-desc">dondurma, sirop, süd</div></div><div class="item-price">7 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Banana Caramel Milkshake</div><div class="item-desc">dondurma, sirop, süd</div></div><div class="item-price">8 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Mango Cream Milkshake</div><div class="item-desc">dondurma, sirop, püre, süd</div></div><div class="item-price">8 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Coffee Milkshake</div><div class="item-desc">espresso, dondurma, süd, şokolad topping</div></div><div class="item-price">9 ₼</div></div>
+
+      <div class="sub-heading">Lemonadlar</div>
+      <div class="item"><div class="item-body"><div class="item-name">Mojito Classic</div><div class="item-desc">sirab, sirop, nanə, limon freş</div></div><div class="item-price">7 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Mojito Strawberry</div><div class="item-desc">sirab, sirop, nanə, limon freş</div></div><div class="item-price">7 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Mojito Passion</div><div class="item-desc">sirab, sirop, püre, nanə, limon freş</div></div><div class="item-price">7 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Apple & Kiwi Lemonade</div><div class="item-desc">sirab, limon freş, sirop, püre</div></div><div class="item-price">5 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Feijoa Mint</div><div class="item-desc">sirab, limon freş, sirop, püre</div></div><div class="item-price">5 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Strawberry & Watermelon</div><div class="item-desc">sirab, limon freş, sirop, püre</div></div><div class="item-price">5 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Forest Berry Lemonade</div><div class="item-desc">sirab, limon freş, sirop, püre</div></div><div class="item-price">5 ₼</div></div>
+      <div class="item"><div class="item-body"><div class="item-name">Passion Fruit</div><div class="item-desc">sirab, limon freş, sirop, püre</div></div><div class="item-price">5 ₼</div></div>
+    </div>
+  </div>
+
+</div><!-- /content -->
+
+<div class="footer">
+  <div class="divider" style="max-width:200px;margin:0 auto 12px;"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+  <p>Chef Muslim Restaurant · Bon Appétit</p>
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  document.querySelector('.content').scrollIntoView({behavior:'smooth', block:'start'});
+}
+</script>
+</body>
+</html>
